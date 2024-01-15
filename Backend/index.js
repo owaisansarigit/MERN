@@ -2,14 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const port = 3000;
-const items = require("./Models/Items");
+const allRoutes = require("./Route/allRoutes");
+const mongoose = require("mongoose");
 
-// Enable CORS for all routes
+let connect = async () => {
+  await mongoose.connect("mongodb://127.0.0.1:27017/website");
+};
+
+connect();
 app.use(cors());
-
-app.get("/", (req, res) => {
-  res.send(items);
-});
+app.use("/", allRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

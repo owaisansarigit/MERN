@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require("../Models/Users");
 const passport = require("passport");
+const items = require("../Models/Items");
 
 const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -9,11 +10,25 @@ const isLoggedIn = (req, res, next) => {
   }
   res.redirect("/login");
 };
-
-// Login GET
-router.get("/login", (req, res) => {
-  res.render("login.ejs");
+router.get("/", async (req, res) => {
+  res.send(items);
+  try {
+    let name = "Name";
+    let email = "Email";
+    let username = "username";
+    let password = "Abc@123";
+    let newUser = await new User({
+      name: name,
+      email: email,
+      username: username,
+    });
+    let registeredUser = await User.register(newUser, password);
+    await registeredUser.save();
+  } catch (e) {
+    console.log(e);
+  }
 });
+
 // Login Post
 router.post(
   "/login",
