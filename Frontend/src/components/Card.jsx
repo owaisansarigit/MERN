@@ -50,11 +50,11 @@ const Card = ({ item, addToCart }) => {
             </div>
           </div>
           <button
-            className="btn btn-sm btn-transperent mt-3"
+            className="btn btn-sm btn-transperent mt-3 "
             onClick={handleAddToCart}
           >
             {addedToCart ? "Added to Cart" : "Add to Cart"}
-            </button>
+          </button>
         </div>
       </div>
     </>

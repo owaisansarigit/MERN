@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbaar = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <Link class="navbar-brand" to="/">
             Navbar
-          </a>
+          </Link>
           <button
-            className="navbar-toggler"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNavAltMarkup"
@@ -17,13 +18,30 @@ const Navbaar = () => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="#">
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <Link class="nav-link " aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
+              <Link class="nav-link " aria-current="page" to="/myorder">
+                My Order
+              </Link>
+            </div>
+            <div class="navbar-nav ms-auto">
+              <Link class="nav-link " aria-current="page" to="/login">
+                Login
+              </Link>
+              <Link class="nav-link " aria-current="page" to="/register">
+                Register
+              </Link>
+              <Link class="nav-link " aria-current="page" to="/cart">
+                Cart
+              </Link>
+              <Link class="nav-link " aria-current="page" to="/logout">
+                Logout
+              </Link>
             </div>
           </div>
         </div>
