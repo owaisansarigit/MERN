@@ -12,39 +12,29 @@ const isLoggedIn = (req, res, next) => {
 };
 router.get("/", async (req, res) => {
   res.send(items);
-  try {
-    let name = "Name";
-    let email = "Email";
-    let username = "username";
-    let password = "Abc@123";
-    let newUser = await new User({
-      name: name,
-      email: email,
-      username: username,
-    });
-    let registeredUser = await User.register(newUser, password);
-    await registeredUser.save();
-  } catch (e) {
-    console.log(e);
-  }
 });
 
 // Login Post
-router.post(
-  "/login",
-  passport.authenticate("local", {
-    failureRedirect: "/login",
-    failureFlash: "Invalid username or password.",
-  }),
-  (req, res) => {
-    req.flash("success", "Welcome Back !");
-    res.redirect("/");
+// router.post(
+//   "/login",
+//   passport.authenticate("local", {
+//     failureRedirect: "/login",
+//     failureFlash: "Invalid username or password.",
+//   }),
+//   (req, res) => {
+//     req.flash("success", "Welcome Back !");
+//     res.redirect("/");
+//   }
+// );
+router.post("/login", (req, res) => {
+  try {
+    res.send({ message: "Login successful", data: req.body });
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-);
-// SignUp GET
-router.get("/register", (req, res) => {
-  res.render("register.ejs");
 });
+
 // SignUp Post
 router.post("/register", async (req, res) => {
   try {
