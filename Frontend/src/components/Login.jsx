@@ -19,8 +19,9 @@ const Login = () => {
 
       if (res.ok) {
         let data = await res.json();
-        console.log(data); // Log the parsed JSON data
-        // Navigate("/");
+        if (data.message == "Login successful") {
+          navigate("/");
+        }
       } else {
         console.error("Login failed");
         console.log(res);
